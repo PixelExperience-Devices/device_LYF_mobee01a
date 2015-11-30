@@ -87,5 +87,13 @@ TARGET_PROVIDES_WCNSS_QMI := true
 WIFI_DRIVER_MODULE_NAME := "wlan"
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 
+# Shims
+TARGET_LD_SHIM_LIBS := \
+    /system/bin/mm-qcamera-daemon|libshim_camera.so \
+    /system/vendor/lib/libmmcamera2_imglib_modules.so|libshim_camera.so \
+    /system/vendor/lib/libmmcamera2_stats_modules.so|libshim_camera.so \
+    /system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so \
+    /system/vendor/lib64/lib-imsdpl.so|libshim_boringssl.so
+
 # Inherit from proprietary files
 include vendor/LYF/mobee01a/BoardConfigVendor.mk
