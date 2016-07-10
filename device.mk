@@ -98,6 +98,11 @@ PRODUCT_PACKAGES += \
     android.hardware.health@1.0-convert \
     android.hardware.health@1.0-service
 
+# Gestures and Glove mode package
+PRODUCT_PACKAGES += \
+    DeviceSettings
+
+
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
