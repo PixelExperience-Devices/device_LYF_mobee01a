@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2015, The Linux Foundataion. All rights reserved.
+/* Copyright (c) 2012-2017, The Linux Foundataion. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -886,11 +886,13 @@ int QCameraHeapMemory::getMatchBufIndex(const void *opaque,
  * RETURN     : none
  *==========================================================================*/
 QCameraStreamMemory::QCameraStreamMemory(camera_request_memory getMemory,
+        void* cbCookie,
         bool cached,
         QCameraMemoryPool *pool,
         cam_stream_type_t streamType)
     :QCameraMemory(cached, pool, streamType),
-     mGetMemory(getMemory)
+     mGetMemory(getMemory),
+     mCallbackCookie(cbCookie)
 {
     for (int i = 0; i < MM_CAMERA_MAX_NUM_FRAMES; i ++)
         mCameraMemory[i] = NULL;
@@ -931,7 +933,7 @@ int QCameraStreamMemory::allocate(uint8_t count, size_t size)
         return rc;
 
     for (int i = 0; i < count; i ++) {
-        mCameraMemory[i] = mGetMemory(mMemInfo[i].fd, mMemInfo[i].size, 1, this);
+        mCameraMemory[i] = mGetMemory(mMemInfo[i].fd, mMemInfo[i].size, 1, mCallbackCookie);
     }
     mBufferCount = count;
     traceLogAllocEnd((size * count));
@@ -960,7 +962,7 @@ int QCameraStreamMemory::allocateMore(uint8_t count, size_t size)
         return rc;
 
     for (int i = mBufferCount; i < mBufferCount + count; i++) {
-        mCameraMemory[i] = mGetMemory(mMemInfo[i].fd, mMemInfo[i].size, 1, this);
+        mCameraMemory[i] = mGetMemory(mMemInfo[i].fd, mMemInfo[i].size, 1, mCallbackCookie);
     }
     mBufferCount = (uint8_t)(mBufferCount + count);
     traceLogAllocEnd((size * count));
@@ -1104,9 +1106,9 @@ void *QCameraStreamMemory::getPtr(uint32_t index) const
  *
  * RETURN     : none
  *==========================================================================*/
-QCameraVideoMemory::QCameraVideoMemory(camera_request_memory getMemory,
+QCameraVideoMemory::QCameraVideoMemory(camera_request_memory getMemory, void* cbCookie,
                                        bool cached)
-    : QCameraStreamMemory(getMemory, cached)
+    : QCameraStreamMemory(getMemory, cbCookie, cached)
 {
     memset(mMetadata, 0, sizeof(mMetadata));
 }
@@ -1146,7 +1148,7 @@ int QCameraVideoMemory::allocate(uint8_t count, size_t size)
 
     for (int i = 0; i < count; i ++) {
         mMetadata[i] = mGetMemory(-1,
-                sizeof(struct encoder_media_buffer_type), 1, this);
+                sizeof(struct encoder_media_buffer_type), 1, mCallbackCookie);
         if (!mMetadata[i]) {
             ALOGE("allocation of video metadata failed.");
             for (int j = 0; j <= i-1; j ++)
@@ -1195,7 +1197,7 @@ int QCameraVideoMemory::allocateMore(uint8_t count, size_t size)
 
     for (int i = mBufferCount; i < count + mBufferCount; i ++) {
         mMetadata[i] = mGetMemory(-1,
-                sizeof(struct encoder_media_buffer_type), 1, this);
+                sizeof(struct encoder_media_buffer_type), 1, mCallbackCookie);
         if (!mMetadata[i]) {
             ALOGE("allocation of video metadata failed.");
             for (int j = mBufferCount; j <= i-1; j ++) {
@@ -1325,13 +1327,15 @@ int QCameraVideoMemory::getMatchBufIndex(const void *opaque,
  *
  * RETURN     : none
  *==========================================================================*/
-QCameraGrallocMemory::QCameraGrallocMemory(camera_request_memory getMemory)
+QCameraGrallocMemory::QCameraGrallocMemory(camera_request_memory getMemory,
+                                           void* cbCookie)
         : QCameraMemory(true)
 {
     mMinUndequeuedBuffers = 0;
     mWindow = NULL;
     mWidth = mHeight = mStride = mScanline = 0;
     mFormat = HAL_PIXEL_FORMAT_YCrCb_420_SP;
+    mCallbackCookie = cbCookie;
     mGetMemory = getMemory;
     for (int i = 0; i < MM_CAMERA_MAX_NUM_FRAMES; i ++) {
         mBufferHandle[i] = NULL;
@@ -1622,7 +1626,7 @@ int QCameraGrallocMemory::allocate(uint8_t count, size_t /*size*/)
             mGetMemory(mPrivateHandle[cnt]->fd,
                     (size_t)mPrivateHandle[cnt]->size,
                     1,
-                    (void *)this);
+                    mCallbackCookie);
         CDBG("%s: idx = %d, fd = %d, size = %d, offset = %d",
               __func__, cnt, mPrivateHandle[cnt]->fd,
               mPrivateHandle[cnt]->size,
