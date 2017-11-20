@@ -80,6 +80,9 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service
 
+# Dalvik
+$(call inherit-product, device/LYF/mobee01a/display/phone-xxhdpi-2048-hwui-memory.mk)
+
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-impl \
