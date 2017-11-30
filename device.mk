@@ -86,6 +86,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     lights.msm8916
 
+# Libshim
+PRODUCT_PACKAGES += \
+    libshim_atomic
+
+# Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
     android.hardware.light@2.0-service
