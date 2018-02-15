@@ -5,6 +5,10 @@ PRODUCT_PACKAGES += \
     libshim_camera \
     libshim_atomic \
     libboringssl-compat \
+    camera.msm8916 \
+    libmmjpeg_interface \
+    libmmcamera_interface \
+    libqomx_core \
     SnapdragonCamera
 
 # Permissions
