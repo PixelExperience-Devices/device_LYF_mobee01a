@@ -1,4 +1,4 @@
-LOCAL_PATH:= $(call my-dir)
+LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
@@ -19,6 +19,24 @@ LOCAL_SRC_FILES := \
 
 LOCAL_CFLAGS += -Wall -Wextra -Werror
 LOCAL_CFLAGS += -DHAS_MULTIMEDIA_HINTS
+
+#use media extension
+#ifeq ($(TARGET_USES_MEDIA_EXTENSIONS), true)
+LOCAL_CFLAGS += -DUSE_MEDIA_EXTENSIONS
+#endif
+
+#Debug logs are enabled
+#LOCAL_CFLAGS += -DDISABLE_DEBUG_LOG
+
+#ifeq ($(TARGET_USES_AOSP),true)
+#LOCAL_CFLAGS += -DVANILLA_HAL
+#endif
+
+ifneq ($(call is-platform-sdk-version-at-least,18),true)
+LOCAL_CFLAGS += -DUSE_JB_MR1
+endif
+
+LOCAL_CFLAGS += -DDEFAULT_DENOISE_MODE_ON
 
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/../stack/common \

@@ -17,9 +17,6 @@ include device/cyanogen/msm8916-common/BoardConfigCommon.mk
 
 include device/LYF/mobee01a/board/*.mk
 
-# Assertions
-#TARGET_BOARD_INFO_FILE := device/LYF/mobee01a/board-info.txt
-
 # Inherit from proprietary files
 include vendor/LYF/mobee01a/BoardConfigVendor.mk
 
