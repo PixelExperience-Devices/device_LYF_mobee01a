@@ -15,15 +15,24 @@
 
 include device/cyanogen/msm8916-common/BoardConfigCommon.mk
 
-include device/yu/tomato/board/*.mk
+include device/LYF/mobee01a/board/*.mk
 
 # Assertions
-TARGET_BOARD_INFO_FILE := device/yu/tomato/board-info.txt
+#TARGET_BOARD_INFO_FILE := device/LYF/mobee01a/board-info.txt
 
 # Inherit from proprietary files
-include vendor/yu/tomato/BoardConfigVendor.mk
+include vendor/LYF/mobee01a/BoardConfigVendor.mk
 
 # Dex-preopt
 WITH_DEXPREOPT := false
 DONT_DEXPREOPT_PREBUILTS := true
 WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
+
+# Shims
+TARGET_LD_SHIM_LIBS := \
+    /system/bin/mm-qcamera-daemon|libshim_camera.so \
+    /system/vendor/lib/libmmcamera2_imglib_modules.so|libshim_camera.so \
+    /system/vendor/lib/libmmcamera2_stats_modules.so|libshim_camera.so \
+    /system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so \
+    /system/vendor/lib64/libizat_core.so|libshims_get_process_name.so \
+    /system/vendor/lib64/lib-imsdpl.so|libshim_boringssl.so

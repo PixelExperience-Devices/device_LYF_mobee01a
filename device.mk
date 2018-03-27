@@ -29,7 +29,7 @@ PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model ro.sf.lcd_density
 include $(LOCAL_PATH)/product/*.mk
 
 # Call the proprietary setup
-$(call inherit-product, vendor/yu/tomato/tomato-vendor.mk)
+$(call inherit-product, vendor/LYF/mobee01a/mobee01a-vendor.mk)
 
 PRODUCT_PACKAGES +=\
 MiXplorer \
@@ -37,11 +37,11 @@ MusicPlayer \
 NexusLauncher
 
 PRODUCT_COPY_FILES +=\
- $(LOCAL_PATH)/yl_params/extra/lib/arm/libbass.so:/system/app/MusicPlayer/lib/arm/libbass.so \
- $(LOCAL_PATH)/yl_params/extra/lib/arm/libbassflac.so:/system/app/MusicPlayer/lib/arm/libbassflac.so \
- $(LOCAL_PATH)/yl_params/extra/lib/arm/libbass_fx.so:/system/app/MusicPlayer/lib/arm/libbass_fx.so \
- $(LOCAL_PATH)/yl_params/extra/lib/arm/libbassmix.so:/system/app/MusicPlayer/lib/arm/libbassmix.so \
- $(LOCAL_PATH)/yl_params/extra/lib/arm/libbass_aac.so:/system/app/MusicPlayer/lib/arm/libbass_aac.so
+ $(LOCAL_PATH)/Apps/extra/lib/arm/libbass.so:/system/app/MusicPlayer/lib/arm/libbass.so \
+ $(LOCAL_PATH)/Apps/extra/lib/arm/libbassflac.so:/system/app/MusicPlayer/lib/arm/libbassflac.so \
+ $(LOCAL_PATH)/Apps/extra/lib/arm/libbass_fx.so:/system/app/MusicPlayer/lib/arm/libbass_fx.so \
+ $(LOCAL_PATH)/Apps/extra/lib/arm/libbassmix.so:/system/app/MusicPlayer/lib/arm/libbassmix.so \
+ $(LOCAL_PATH)/Apps/extra/lib/arm/libbass_aac.so:/system/app/MusicPlayer/lib/arm/libbass_aac.so
 
 # HIDL
 PRODUCT_PACKAGES += \

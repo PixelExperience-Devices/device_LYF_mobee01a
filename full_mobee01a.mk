@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2015 The CyanogenMod Project
+# Copyright (C) 2014 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,9 +12,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-LOCAL_PATH := $(call my-dir)
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-ifeq ($(TARGET_DEVICE),mobee01a)
-include $(call all-makefiles-under,$(LOCAL_PATH))
-endif
+# Inherit from mobee01a device
+$(call inherit-product, device/LYF/mobee01a/device.mk)
+
+# Device identifier. This must come after all inclusions
+TARGET_VENDOR := LYF
+PRODUCT_DEVICE := mobee01a
+PRODUCT_NAME := full_mobee01a
+PRODUCT_BRAND := LYF
+PRODUCT_MODEL := LYF Water 8
+PRODUCT_MANUFACTURER := LYF
