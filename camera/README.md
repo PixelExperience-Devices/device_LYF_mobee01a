@@ -1,1 +1,0 @@
-# LYF_LS_5015_Camera_HAL
