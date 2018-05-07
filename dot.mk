@@ -15,13 +15,13 @@
 $(call inherit-product, device/LYF/mobee01a/full_mobee01a.mk)
 
 # Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/cos/common.mk)
+$(call inherit-product, vendor/dot/config/common.mk)
 
 # Must define platform variant before including any common things
 TARGET_BOARD_PLATFORM_VARIANT := msm8939
 
 PRODUCT_BRAND := LYF
-PRODUCT_NAME := cos_mobee01a
+PRODUCT_NAME := dot_mobee01a
 BOARD_VENDOR := LYF
 PRODUCT_DEVICE := mobee01a
 

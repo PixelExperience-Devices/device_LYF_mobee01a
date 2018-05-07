@@ -31,5 +31,4 @@ TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib/libmmcamera2_imglib_modules.so|libshim_camera.so \
     /system/vendor/lib/libmmcamera2_stats_modules.so|libshim_camera.so \
     /system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so \
-    /system/vendor/lib64/libizat_core.so|libshims_get_process_name.so \
     /system/vendor/lib64/lib-imsdpl.so|libshim_boringssl.so
