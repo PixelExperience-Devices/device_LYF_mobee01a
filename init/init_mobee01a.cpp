@@ -30,16 +30,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include <android-base/properties.h>
-
-#include "property_service.h"
 #include "vendor_init.h"
+#include "property_service.h"
+#include "log.h"
 #include "util.h"
+
 #include "init_msm8916.h"
 
-using android::base::GetProperty;
-using android::init::property_set;
-using android::init::import_kernel_cmdline;
 static int display_density = 320;
 
 static void import_cmdline(const std::string& key,
@@ -47,18 +44,13 @@ static void import_cmdline(const std::string& key,
 {
     if (key.empty()) return;
 
-    //if (key == "panel.xres" && value == "1080") {
-    //    display_density = 410;
-    //}
+    if (key == "panel.xres" && value == "1080") {
+        display_density = 480;
+    }
 }
 
 void init_target_properties()
 {
-    char density[5];
-    import_kernel_cmdline(0, import_cmdline);
-    snprintf(density, sizeof(density), "%d", display_density);
-    property_set("ro.sf.lcd_density", density);
-        property_set("ro.product.model", "LYF Water 8");
         property_set("dalvik.vm.heapstartsize", "8m");
         property_set("dalvik.vm.heapgrowthlimit", "192m");
         property_set("dalvik.vm.heapsize", "512m");

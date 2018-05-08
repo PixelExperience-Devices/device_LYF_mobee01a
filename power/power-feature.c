@@ -28,7 +28,7 @@
 #define LOG_TAG "PowerHAL feature"
 #include <utils/Log.h>
 
-#define TAP_TO_WAKE_NODE "/sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl"
+#define TAP_TO_WAKE_NODE "/sys/mip4_ts/wakeup_gesture"
 
 static int sysfs_write(char *path, char *s)
 {

@@ -1,5 +1,5 @@
 # ADSP
-bin/adsprpcd
+bin/adsprpcd:vendor/bin/adsprpcd
 vendor/lib64/libadsprpc.so
 vendor/lib/libadsprpc.so
 vendor/lib/libfastcvopt.so
@@ -22,12 +22,12 @@ vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
 
 # Bluetooth
-bin/btnvtool
-bin/hci_qcomm_init
+bin/btnvtool:vendor/bin/btnvtool
+bin/hci_qcomm_init:vendor/bin/hci_qcomm_init
 vendor/lib64/libbtnv.so
 
 # Camera
-bin/mm-qcamera-daemon
+bin/mm-qcamera-daemon:vendor/bin/mm-qcamera-daemon
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
 vendor/lib/libmmcamera2_c2d_module.so
@@ -102,32 +102,27 @@ vendor/lib/libchromatix_ov5648_qtech_snapshot.so
 vendor/lib/libmmcamera_sunny_imx214_eeprom.so
 
 # Camera firmware
-etc/firmware/cpp_firmware_v1_1_1.fw
-etc/firmware/cpp_firmware_v1_1_6.fw
-etc/firmware/cpp_firmware_v1_2_0.fw
-etc/firmware/cpp_firmware_v1_4_0.fw
+etc/firmware/cpp_firmware_v1_1_1.fw:vendor/firmware/cpp_firmware_v1_1_1.fw
+etc/firmware/cpp_firmware_v1_1_6.fw:vendor/firmware/cpp_firmware_v1_1_6.fw
+etc/firmware/cpp_firmware_v1_2_0.fw:vendor/firmware/cpp_firmware_v1_2_0.fw
+etc/firmware/cpp_firmware_v1_4_0.fw:vendor/firmware/cpp_firmware_v1_4_0.fw
 
 # Camera sensors
 vendor/lib/libmmcamera_imx135_cp8675.so
 vendor/lib/libmmcamera_imx214_cp8675.so
 vendor/lib/libmmcamera_ov5648_cp8675.so
 
-# DRM - from kipper
-bin/qseecomd|32f84827b28dd3603ac8b863adee16998c92cc3e
-vendor/lib64/lib-sec-disp.so|26fcf87e775498125415428c68208b91ddb41a4e
-vendor/lib64/libdrmfs.so|645998dfcb0d204ef7eb5a2f7ccd96d71eb045be
-vendor/lib64/libdrmtime.so|71b44bd96e194b43b7c6e50a97eb5efd5f5f95e4
-vendor/lib64/libQSEEComAPI.so|5ec09d3085cc6a7157ed094d677bbfd1479fbac4
-vendor/lib64/librpmb.so|25bfd9f541db45756cf0b03bcc8284a90408ff18
-vendor/lib64/libsecureui.so|9b384a585313d739f8f25e34efd944db962ac0f5
-vendor/lib64/libsecureui_svcsock.so|8a27b9693bb5f7e7acc7294bfd046c720074011b
-vendor/lib64/libSecureUILib.so|62a723c5aabc264f653cb150e61ee4aff04e4fce
-vendor/lib64/libssd.so|4e1ca3d1f0dc7deaa0fd58e1dc6407d8cd020852
-vendor/lib64/libStDrvInt.so|8e7eab1f2d93c38edcf9a932cef2841969d9ef9c
+# DRM
+bin/qseecomd:vendor/bin/qseecomd
+vendor/lib64/libdrmfs.so
+vendor/lib64/libdrmtime.so
+vendor/lib64/libQSEEComAPI.so
+vendor/lib64/librpmb.so
+vendor/lib64/libssd.so
 
 # GPS - from kipper
--lib64/libloc_api_v02.so|bdd3a92246d9a6a42b928201835f2d767cde1eff
--lib64/libloc_ds_api.so|e06cd5c399bf64d8f28d45ccd18b65c612b76625
+-lib64/libloc_api_v02.so:vendor/lib64/libloc_api_v02.so|bdd3a92246d9a6a42b928201835f2d767cde1eff
+-lib64/libloc_ds_api.so:vendor/lib64/libloc_ds_api.so|e06cd5c399bf64d8f28d45ccd18b65c612b76625
 vendor/lib64/hw/flp.default.so|03784211a3d7c144c0bc6f86b50d1cc5eb97f8c5
 vendor/lib64/libflp.so|33793c405cf39858854c8023dec4b4e0d9d79ff0
 vendor/lib64/libgeofence.so|23cb999eb444971170ff60873392706cf003ed23
@@ -191,139 +186,72 @@ vendor/lib/libsc-a3xx.so|a03fc9f0c929cb4adf013f8a463cfbef68d48090
 vendor/lib/libscale.so|972cbd87794b4ce0a5c23db946acbafd4cd6d073
 
 # Graphics firmware
-etc/firmware/a420_pfp.fw
-etc/firmware/a420_pm4.fw
+etc/firmware/a420_pfp.fw:vendor/firmware/a420_pfp.fw
+etc/firmware/a420_pm4.fw:vendor/firmware/a420_pm4.fw
 
-# Radio - IMS
-bin/ims_rtp_daemon
-bin/imscmservice
-bin/imsdatadaemon
-bin/imsqmidaemon
-etc/permissions/imscm.xml
-etc/permissions/qti_permissions.xml
--framework/imscmlibrary.jar
--vendor/app/ims/ims.apk
--vendor/app/imssettings/imssettings.apk
-vendor/lib64/lib-dplmedia.so
-vendor/lib64/lib-ims-rcscmjni.so
-vendor/lib64/lib-imsSDP.so
-vendor/lib64/lib-imscamera.so
-vendor/lib64/lib-imsdpl.so
-vendor/lib64/lib-imsqimf.so
-vendor/lib64/lib-imsrcs.so
-vendor/lib64/lib-imsrcscm.so
-vendor/lib64/lib-imsrcscmclient.so
-vendor/lib64/lib-imsrcscmservice.so
-vendor/lib64/lib-imss.so
-vendor/lib64/lib-imsvt.so
-vendor/lib64/lib-imsxml.so
-vendor/lib64/lib-rcsimssjni.so
-vendor/lib64/lib-rcsjni.so
-vendor/lib64/lib-rtpcommon.so
-vendor/lib64/lib-rtpcore.so
-vendor/lib64/lib-rtpdaemoninterface.so
-vendor/lib64/lib-rtpsl.so
-vendor/lib64/libimscamera_jni.so
-vendor/lib64/libimsmedia_jni.so
-vendor/lib64/libvcel.so
-vendor/lib64/libvoice-svc.so
-
-# Media - from kipper
-vendor/lib64/libmmosal.so|59744291e539c5d218ef6231fe548b039b430b70
-vendor/lib64/libOmxAacDec.so|f9e53187b93e6cef06e42b34e512f42d16827cb0
-vendor/lib/libI420colorconvert.so|6f41a248acb5546874588ddcd4b940a95583515e
-vendor/lib/libmm-color-convertor.so|62e4cd5fefb6bd498b10256fd3dcb990197405f6
-vendor/lib/libmmosal.so|e72ef268ce23f506c56935f23cab820c5a6b2d8b
-vendor/lib/libOmxAacDec.so|c4161397293f5bed3e991edc0055d5b258aba4cd
-vendor/lib/libOmxEvrcDec.so|b4ff4380a7e0335372d926663c8f9981ad615115
-vendor/lib/libOmxQcelp13Dec.so|b4110e3e9a959b4d1a5e0f42a31efb2d8fd0bf0c
+# Media
+vendor/lib/libOmxAacDec.so
+vendor/lib/libOmxEvrcDec.so
+vendor/lib/libOmxQcelp13Dec.so
 
 # Perf
-bin/msm_irqbalance
+bin/msm_irqbalance:vendor/bin/msm_irqbalance
 vendor/bin/perfd
 vendor/lib64/libqti-perfd-client.so
 vendor/lib/libqti-perfd-client.so
 
-# Postprocessing - from kipper
-bin/mm-pp-daemon|c128b7a5c3f04282e5c6baff07abf79cc6689b34
-etc/permissions/com.qti.snapdragon.sdk.display.xml|c7379e4fea71c2600f34b897cee760930ab0ce8b
-framework/com.qti.snapdragon.sdk.display.jar|80666d2527882115cac8a1661f698a3ce289cba7
--app/colorservice/colorservice.apk|70e389568640118e0df26302834a1f9cf5510dec
-vendor/lib64/libdisp-aba.so|863c28e2df51bfd718213fc4fe8936427d1c1978
-vendor/lib64/libmm-abl.so|080c41038facd782f59432099ba40b900e729550
-vendor/lib64/libmm-abl-oem.so|444eab8c7e2468ac757f493bdf5fa6748af4aa00
+# Postprocessing
+bin/mm-pp-daemon:vendor/bin/mm-pp-daemon
+vendor/lib64/libdisp-aba.so
+vendor/lib64/libmm-abl.so
+vendor/lib64/libmm-abl-oem.so
 
-# Qualcomm framework
-bin/irsc_util
-vendor/lib64/libdiag.so
-vendor/lib64/libdsi_netctrl.so
-vendor/lib64/libdsutils.so
-vendor/lib64/libidl.so
-vendor/lib64/libqcci_legacy.so
-vendor/lib64/libqdi.so
-vendor/lib64/libqdp.so
-vendor/lib64/libqmi_cci.so
-vendor/lib64/libqmi_client_helper.so
-vendor/lib64/libqmi_client_qmux.so
-vendor/lib64/libqmi_common_so.so
-vendor/lib64/libqmi_csi.so
-vendor/lib64/libqmi_encdec.so
-vendor/lib64/libqmiservices.so
-vendor/lib64/libqmi.so
-vendor/lib64/libsmemlog.so
-vendor/lib/libdiag.so
-vendor/lib/libdsi_netctrl.so
-vendor/lib/libdsutils.so
-vendor/lib/libidl.so
-vendor/lib/libqcci_legacy.so
-vendor/lib/libqdi.so
-vendor/lib/libqdp.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_client_helper.so
-vendor/lib/libqmi_client_qmux.so
-vendor/lib/libqmi_common_so.so
-vendor/lib/libqmi_csi.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libqmiservices.so
-vendor/lib/libqmi.so
-vendor/lib/libsmemlog.so
+# Qualcomm framework - from kipper
+bin/irsc_util:vendor/bin/irsc_util|930544024d17c8ddd89d0931259e32face034c34
+vendor/lib64/libdiag.so|f59c5066ab1eba93f90a518c61b48dd4fcad48bc
+vendor/lib64/libdsi_netctrl.so|80fbb9f1d2985fd2daff279a62d7e0607bcece78
+vendor/lib64/libdsutils.so|6d91c70c64e13c80cc64920858451058a83c2d28
+vendor/lib64/libidl.so|5cf38aa2fe70ff20813bde5069723432b44dcde6
+vendor/lib64/libqcci_legacy.so|8faee1f1712aa0b6d18964949c69f43d4f2386ab
+vendor/lib64/libqdi.so|4d842f69efb2dd9baded4ffa942b739ea6f06cde
+vendor/lib64/libqdp.so|049afd2cd465443bcb090c366fa3a1eab7459fb4
+vendor/lib64/libqmi_cci.so|2b250f3087e539acbc3b9231c939f636111bb257
+vendor/lib64/libqmi_client_helper.so|63d5ec7666fcdd25775bc3554fdf6c5ab9c057cc
+vendor/lib64/libqmi_client_qmux.so|fef9cd52862d971caa0fb4a6d7a5f5644f4e1989
+vendor/lib64/libqmi_common_so.so|e49e091394e69229cf03813b3d856dfdd97698c2
+vendor/lib64/libqmi_csi.so|11073b5b976a63cab60648a2009a95bb24bead53
+vendor/lib64/libqmi_encdec.so|d465ce4dc3aae9fef9061a56607f09bf74bd27fd
+vendor/lib64/libqmiservices.so|f9e8f7777bb9e6faa5dce3f1ad8ac159d4a6bc3b
+vendor/lib64/libqmi.so|298d415d48270c36d19f509304790003d280edae
+vendor/lib64/libsmemlog.so|37162480cdd93b25d4f2829f5aa53abbac7a1b8e
+vendor/lib/libdiag.so|3a72d687831a987ab7df6e8a4a4f72acc9fbf611
+vendor/lib/libdsi_netctrl.so|4e0e79e12cc58fe601eb9090022271b5ff4d8b23
+vendor/lib/libdsutils.so|4b739b8fa04ac8ff9c984fed445f0462c8000a46
+vendor/lib/libidl.so|eadf4f3f7d25ec642cc457d4f6d16912682b0508
+vendor/lib/libqcci_legacy.so|0c7658add55e45afbc063ee2d29d0d5209b6308b
+vendor/lib/libqdi.so|a2fa87b9706a6f9607125a745f94f00b7a2a8a5d
+vendor/lib/libqdp.so|9f497dbe3e9c41d76c4bdaa4477cdaaf1b111857
+vendor/lib/libqmi_cci.so|5c2773bb105d9d54ea123ceab40739a581c5ae40
+vendor/lib/libqmi_client_helper.so|6cf26004327f52fa3aabdeb253a21783e419dae9
+vendor/lib/libqmi_client_qmux.so|1fbd42793f8266fd2d676f2300a1d2f88c3f4d29
+vendor/lib/libqmi_common_so.so|1f38f77da048d51297091bb9f4ccac7462edaf91
+vendor/lib/libqmi_csi.so|c9392c194058010074442190eb051e9e59cc6f7b
+vendor/lib/libqmi_encdec.so|cab1c426bd8673f5e98f847cb0a95adc5d2978f4
+vendor/lib/libqmiservices.so|fab93a6ae9eac9e81a245bba13ee891de23dd0fe
+vendor/lib/libqmi.so|84ec6a6d853aa00ed32f60d3a58db496567a9f38
+vendor/lib/libsmemlog.so|c632a70764ee1d6416ce1758f4d10cd6983d204d
 
-<<<<<<< HEAD
-# Radio
--app/shutdownlistener/shutdownlistener.apk
-bin/netmgrd
-bin/qmuxd
-bin/radish
-bin/rmt_storage
-etc/permissions/qcnvitems.xml
-etc/permissions/qcrilhook.xml
--framework/qcnvitems.jar
--framework/qcrilhook.jar
--priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
-vendor/lib64/libcneapiclient.so
-vendor/lib64/libconfigdb.so
-vendor/lib64/liblqe.so
-vendor/lib64/libmdmdetect.so
-vendor/lib64/libnetmgr.so
-vendor/lib64/libperipheral_client.so
-vendor/lib64/libril-qc-qmi-1.so
-vendor/lib64/libril-qc-radioconfig.so
-vendor/lib64/libril-qcril-hook-oem.so
-vendor/lib64/libsystem_health_mon.so
-vendor/lib64/libxml.so
-vendor/lib/libmdmdetect.so
-=======
 # Radio - from kipper
--app/shutdownlistener/shutdownlistener.apk|61bf2ac0e7c312036423f2c77a310aa310d06f7b
-bin/netmgrd|f6e0a4f92bd0cc8e9cf7be1d2a60ffde4ce7123a
-bin/qmuxd|d36ad140da7833c0b82ecb28262360d3e974cb0d
-bin/radish|9cb3017bc4ece05809662d76f9141044b1daee6c
-bin/rmt_storage|ddec53a336abfe30f96d0eaa83565936166c571f
-etc/permissions/qcnvitems.xml|dc0e70cace2317b5169a454cbc2bbf8887c18d55
-etc/permissions/qcrilhook.xml|9fc58a3d54d20ac1d53bab14608815121aefbce5
--framework/qcnvitems.jar|b50c25a4760313acd6ad770bf1ee207b5376b53e
--framework/qcrilhook.jar|4ac8f925c1e76da54279867a14c32e5bc868b6df
-lib64/librilqmiservices.so|f2e5672219ea59c479f2389c70ac0907a7a78265
+-app/shutdownlistener/shutdownlistener.apk:vendor/app/shutdownlistener/shutdownlistener.apk|61bf2ac0e7c312036423f2c77a310aa310d06f7b
+bin/netmgrd:vendor/bin/netmgrd|c7ec4849b808f64e6414b2180ed16122f757d963
+bin/qmuxd:vendor/bin/qmuxd|d36ad140da7833c0b82ecb28262360d3e974cb0d
+bin/radish:vendor/bin/radish|9cb3017bc4ece05809662d76f9141044b1daee6c
+bin/rmt_storage:vendor/bin/rmt_storage|ddec53a336abfe30f96d0eaa83565936166c571f
+etc/permissions/qcnvitems.xml:vendor/etc/permissions/qcnvitems.xml|dd47edbccc24a5c254dca18250c0136ecab4f0d6
+etc/permissions/qcrilhook.xml:vendor/etc/permissions/qcrilhook.xml|5a65b197fbc65e3e89e829d07da11904eae3e938
+-framework/qcnvitems.jar:vendor/framework/qcnvitems.jar|b50c25a4760313acd6ad770bf1ee207b5376b53e
+-framework/qcrilhook.jar:vendor/framework/qcrilhook.jar|4ac8f925c1e76da54279867a14c32e5bc868b6df
+lib64/librilqmiservices.so:vendor/lib64/librilqmiservices.so|f2e5672219ea59c479f2389c70ac0907a7a78265
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk|8ca1e2e05596914c57d3a4ce0f367d810da7bb7f
 vendor/lib64/com.quicinc.cne.api@1.0.so|503825cc8a3c0d422e16e04b398d2c1924e518ca
 vendor/lib64/com.quicinc.cne.constants@1.0.so|a60fde6f9328635bf43bb7008dd9517e4e749e8b
@@ -341,16 +269,15 @@ vendor/lib64/libsettings.so|3e459839d90a27d2eb23a3c9d030f46a5c4bfaf1
 vendor/lib64/libsystem_health_mon.so|71adfec8a25dae86d5ad9bc54e9a88ea4fcc2b35
 vendor/lib64/libxml.so|26d53a36db5ea231729a85f385638afff4a2fe60
 vendor/lib/libmdmdetect.so|2c57282fce7367471e44a35305ace773ae89fd30
->>>>>>> 98498fc... tomato: Add CNE libraries from OP3
 
 # Signed Venus (media) firmware
-etc/firmware/venus.b00
-etc/firmware/venus.b01
-etc/firmware/venus.b02
-etc/firmware/venus.b03
-etc/firmware/venus.b04
-etc/firmware/venus.mbn
-etc/firmware/venus.mdt
+etc/firmware/venus.b00:vendor/firmware/venus.b00
+etc/firmware/venus.b01:vendor/firmware/venus.b01
+etc/firmware/venus.b02:vendor/firmware/venus.b02
+etc/firmware/venus.b03:vendor/firmware/venus.b03
+etc/firmware/venus.b04:vendor/firmware/venus.b04
+etc/firmware/venus.mbn:vendor/firmware/venus.mbn
+etc/firmware/venus.mdt:vendor/firmware/venus.mdt
 
 # Thermal
 vendor/bin/thermal-engine|c65885807bf05e5d7e94e90f62b3336b33c50d6b
@@ -359,8 +286,8 @@ vendor/lib64/libthermalioctl.so
 vendor/lib/libthermalclient.so
 
 # Time services
--app/TimeService/TimeService.apk
-bin/time_daemon
+-app/TimeService/TimeService.apk:vendor/app/TimeService/TimeService.apk
+bin/time_daemon:vendor/bin/time_daemon
 -vendor/lib64/libtime_genoff.so
 vendor/lib64/libTimeService.so
 -vendor/lib/libtime_genoff.so

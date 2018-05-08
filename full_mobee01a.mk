@@ -22,7 +22,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/LYF/mobee01a/device.mk)
 
 # Device identifier. This must come after all inclusions
-TARGET_VENDOR := LYF
 PRODUCT_DEVICE := mobee01a
 PRODUCT_NAME := full_mobee01a
 PRODUCT_BRAND := LYF
