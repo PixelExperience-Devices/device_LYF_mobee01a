@@ -1,4 +1,53 @@
 # Audio
+af.fast_track_multiplier=1
+audio.deep_buffer.media=true
+audio.offload.min.duration.secs=30
+audio.offload.video=true
+vendor.audio.av.streaming.offload.enable=true
+vendor.audio.offload.buffer.size.kb=64
+vendor.audio.offload.gapless.enabled=true
+vendor.audio_hal.period_size=192
+vendor.voice.path.for.pcm.voip=true
+
+# Bluetooth
+qcom.bluetooth.soc=smd
+ro.bluetooth.dun=true
+ro.bluetooth.hfp.ver=1.7
+ro.bluetooth.sap=true
+ro.qualcomm.bt.hci_transport=smd
+
+# Display
+debug.hwui.use_buffer_age=false
+debug.composition.type=c2d
+debug.mdpcomp.idletime=600
+debug.sf.enable_hwc_vds=1
+persist.hwc.mdpcomp.enable=true
+persist.hwc.ptor.enable=true
+debug.enable.sglscale=1
+
+# Media
+persist.media.treble_omx=false
+drm.service.enabled=1
+vidc.enc.narrow.searchrange=1
+
+# Perf
+ro.config.max_starting_bg=8
+ro.vendor.extension_library=libqti-perfd-client.so
+ro.core_ctl_min_cpu=0
+ro.core_ctl_max_cpu=4
+
+# Radio
+persist.data.qmi.adb_logmask=0
+persist.radio.apm_sim_not_pwdn=1
+ro.telephony.call_ring.multiple=false
+
+# Wi-Fi
+wifi.interface=wlan0
+
+# Wi-Fi display
+persist.debug.wfd.enable=1
+
+# Audio
 ro.vendor.audio.sdk.fluencetype=fluence
 persist.vendor.audio.fluence.voicecall=true
 persist.vendor.audio.fluence.voicerec=false
@@ -12,13 +61,19 @@ persist.camera.cpp.duplication=false
 persist.camera.hal.debug.mask=0
 
 # Radio
-persist.data.target=dpm1
+DEVICE_PROVISIONED=1
 persist.radio.multisim.config=dsds
 ro.config.always_show_roaming=true
 rild.libpath=/system/vendor/lib64/libril-qc-qmi-1.so
 ril.ecclist=000,08,100,101,102,110,112,118,119,120,122,911,999
 ril.ecclist1=000,08,100,101,102,110,112,118,119,120,122,911,999
 ro.telephony.default_network=9,9
+ril.subscription.types=NV,RUIM
+ro.use_data_netmgrd=true
+persist.data.netmgrd.qos.enable=true
+persist.data.mode=concurrent
+
+# Ims
 net.lte.volte_call_capable=true
 persist.ims.enableADBLogs=1
 persist.ims.enableDebugLogs=1
@@ -31,3 +86,10 @@ persist.radio.VT_HYBRID_ENABLE=1
 persist.radio.VT_USE_MDM_TIME=0
 persist.dbg.volte_avail_ovr=1
 persist.volte_enabled_by_hw=1
+
+# Display
+ro.opengles.version=196610
+
+# Perf
+ro.min_freq_0=960000
+ro.min_freq_4=800000

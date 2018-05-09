@@ -1,6 +1,6 @@
 /*
-   Copyright (c) 2015, The CyanogenMod Project
-
+   Copyright (c) 2016, The CyanogenMod Project
+   Copyright (c) 2017, The LineageOS Project
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
    met:
@@ -13,7 +13,6 @@
     * Neither the name of The Linux Foundation nor the names of its
       contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
-
    THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
@@ -29,35 +28,101 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include <sys/sysinfo.h>
 
+#include <android-base/file.h>
+#include <android-base/logging.h>
 #include <android-base/properties.h>
-#include "property_service.h"
+#include <android-base/strings.h>
+
 #include "vendor_init.h"
-#include "util.h"
+#include "property_service.h"
 
-#include "init_msm8916.h"
-using android::base::GetProperty; 
-using android::init::property_set; 
-static int display_density = 320;
-using android::init::import_kernel_cmdline;
+char const *device;
+char const *family;
+char const *heapstartsize;
+char const *heapgrowthlimit;
+char const *heapsize;
+char const *heapminfree;
+char const *heapmaxfree;
 
-static void import_cmdline(const std::string& key,
-        const std::string& value, bool for_emulator __attribute__((unused)))
+using android::base::GetProperty;
+using android::base::ReadFileToString;
+using android::base::Trim;
+using android::init::property_set;
+
+void check_device()
 {
-    if (key.empty()) return;
+    struct sysinfo sys;
 
-    if (key == "panel.xres" && value == "1080") {
-        display_density = 480;
+    sysinfo(&sys);
+
+    if (sys.totalram > 2048ull * 1024 * 1024) {
+        // from - phone-xxhdpi-3072-dalvik-heap.mk
+        heapstartsize = "8m";
+        heapgrowthlimit = "288m";
+        heapsize = "768m";
+        heapminfree = "512k";
+    } else {
+        // from - phone-xxhdpi-2048-dalvik-heap.mk
+        heapstartsize = "16m";
+        heapgrowthlimit = "192m";
+        heapsize = "512m";
+        heapminfree = "2m";
     }
 }
 
-void init_target_properties()
+static void init_alarm_boot_properties()
 {
-        import_kernel_cmdline(0, import_cmdline);
-        property_set("dalvik.vm.heapstartsize", "8m");
-        property_set("dalvik.vm.heapgrowthlimit", "192m");
-        property_set("dalvik.vm.heapsize", "512m");
-        property_set("dalvik.vm.heaptargetutilization", "0.75");
-        property_set("dalvik.vm.heapminfree", "512k");
-        property_set("dalvik.vm.heapmaxfree", "8m");
+    char const *boot_reason_file = "/proc/sys/kernel/boot_reason";
+    char const *power_off_alarm_file = "/persist/alarm/powerOffAlarmSet";
+    std::string boot_reason;
+    std::string power_off_alarm;
+    std::string reboot_reason = GetProperty("ro.boot.alarmboot", "");
+
+    if (ReadFileToString(boot_reason_file, &boot_reason)
+            && ReadFileToString(power_off_alarm_file, &power_off_alarm)) {
+        /*
+         * Setup ro.alarm_boot value to true when it is RTC triggered boot up
+         * For existing PMIC chips, the following mapping applies
+         * for the value of boot_reason:
+         *
+         * 0 -> unknown
+         * 1 -> hard reset
+         * 2 -> sudden momentary power loss (SMPL)
+         * 3 -> real time clock (RTC)
+         * 4 -> DC charger inserted
+         * 5 -> USB charger inserted
+         * 6 -> PON1 pin toggled (for secondary PMICs)
+         * 7 -> CBLPWR_N pin toggled (for external power supply)
+         * 8 -> KPDPWR_N pin toggled (power key pressed)
+         */
+         if ((Trim(boot_reason) == "3" || reboot_reason == "true")
+                 && Trim(power_off_alarm) == "1") {
+             property_set("ro.alarm_boot", "true");
+         } else {
+             property_set("ro.alarm_boot", "false");
+         }
+    }
+}
+
+void vendor_load_properties()
+{
+    std::string platform;
+
+    platform = GetProperty("ro.board.platform", "");
+    if (platform != ANDROID_TARGET)
+        return;
+
+    check_device();
+
+    property_set("dalvik.vm.heapstartsize", heapstartsize);
+    property_set("dalvik.vm.heapgrowthlimit", heapgrowthlimit);
+    property_set("dalvik.vm.heapsize", heapsize);
+    property_set("dalvik.vm.heaptargetutilization", "0.75");
+    property_set("dalvik.vm.heapminfree", heapminfree);
+    property_set("dalvik.vm.heapmaxfree", "8m");
+
+    init_alarm_boot_properties();
 }

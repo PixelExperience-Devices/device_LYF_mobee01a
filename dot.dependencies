@@ -1,12 +1,6 @@
 [
   {
     "remote": "github",
-    "repository": "LineageOS/android_device_cyanogen_msm8916-common",
-    "target_path": "device/cyanogen/msm8916-common",
-    "revision":	"lineage-15.1"
-  },
-  {
-    "remote": "github",
     "repository": "LS-5015-G42-Dev-Team/kernel_LYF_LS-5015",
     "target_path": "kernel/LYF/mobee01a",
     "revision": "lineage-15.1"
