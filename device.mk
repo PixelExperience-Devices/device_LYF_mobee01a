@@ -48,7 +48,8 @@ PRODUCT_PACKAGES += \
     camera.msm8916 \
     libmm-qcamera \
     Snap \
-    libshim_camera
+    libshim_camera \
+    libboringssl-compat
 
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
@@ -56,9 +57,6 @@ PRODUCT_PACKAGES += \
 
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
-
-# Due to multi-density builds, these are set by init
-PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model ro.sf.lcd_density
 
 # GPS
 PRODUCT_PACKAGES += \
