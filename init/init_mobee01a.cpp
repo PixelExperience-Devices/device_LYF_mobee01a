@@ -30,14 +30,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "vendor_init.h"
+#include <android-base/properties.h>
 #include "property_service.h"
-#include "log.h"
+#include "vendor_init.h"
 #include "util.h"
 
 #include "init_msm8916.h"
-
+using android::base::GetProperty; 
+using android::init::property_set; 
 static int display_density = 320;
+using android::init::import_kernel_cmdline;
 
 static void import_cmdline(const std::string& key,
         const std::string& value, bool for_emulator __attribute__((unused)))
@@ -51,6 +53,7 @@ static void import_cmdline(const std::string& key,
 
 void init_target_properties()
 {
+        import_kernel_cmdline(0, import_cmdline);
         property_set("dalvik.vm.heapstartsize", "8m");
         property_set("dalvik.vm.heapgrowthlimit", "192m");
         property_set("dalvik.vm.heapsize", "512m");
