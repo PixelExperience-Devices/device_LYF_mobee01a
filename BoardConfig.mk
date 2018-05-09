@@ -47,10 +47,12 @@ USE_DEVICE_SPECIFIC_GPS := true
 TARGET_LIBINIT_MSM8916_DEFINES_FILE := $(DEVICE_PATH)/init/init_mobee01a.cpp
 
 # Kernel
-BOARD_DTBTOOL_ARGS := -2
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+#BOARD_DTBTOOL_ARGS := -2
 BOARD_KERNEL_IMAGE_NAME := Image.gz
-BOARD_KERNEL_SEPARATED_DT := true
+#BOARD_KERNEL_SEPARATED_DT := true
 LZMA_RAMDISK_TARGETS := recovery
+TARGET_KERNEL_SOURCE := kernel/LYF/mobee01a
 TARGET_KERNEL_CONFIG := test01a_msm_defconfig
 
 # Lights
@@ -84,8 +86,8 @@ BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 3
 
 # Wi-Fi
 TARGET_PROVIDES_WCNSS_QMI := true
-WIFI_DRIVER_MODULE_NAME := "wlan"
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
+#WIFI_DRIVER_MODULE_NAME := "wlan"
+#WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 
 # Shims
 TARGET_LD_SHIM_LIBS := \

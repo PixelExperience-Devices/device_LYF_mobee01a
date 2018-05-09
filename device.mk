@@ -153,5 +153,9 @@ PRODUCT_PACKAGES += \
     libshim_parcel \
     libshim_boringssl
 
+# Doze
+PRODUCT_PACKAGES += \
+    LYFDoze
+
 # Call the proprietary setup
 $(call inherit-product, vendor/LYF/mobee01a/mobee01a-vendor.mk)
