@@ -38,6 +38,7 @@
 
 #include "vendor_init.h"
 #include "property_service.h"
+#include "util.h"
 
 char const *device;
 char const *family;
@@ -109,12 +110,6 @@ static void init_alarm_boot_properties()
 
 void vendor_load_properties()
 {
-    std::string platform;
-
-    platform = GetProperty("ro.board.platform", "");
-    if (platform != ANDROID_TARGET)
-        return;
-
     check_device();
 
     property_set("dalvik.vm.heapstartsize", heapstartsize);
