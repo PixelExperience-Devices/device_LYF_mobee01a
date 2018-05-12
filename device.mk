@@ -337,7 +337,8 @@ PRODUCT_PACKAGES += \
 
 # Doze
 PRODUCT_PACKAGES += \
-    LYFDoze
+    LYFDoze \
+    LYFParts
 
 # Call the proprietary setup
 $(call inherit-product, vendor/LYF/mobee01a/mobee01a-vendor.mk)
