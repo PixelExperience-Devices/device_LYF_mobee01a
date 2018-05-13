@@ -230,7 +230,7 @@ TARGET_SCREEN_WIDTH := 720
 PRODUCT_PACKAGES += \
     camera.msm8916 \
     libmm-qcamera \
-    Snap \
+    FootejCamera \
     libshim_camera \
     libboringssl-compat
 
@@ -341,5 +341,10 @@ PRODUCT_PACKAGES += \
     LYFDoze \
     LYFParts
 
+#Misc
+PRODUCT_PACKAGES += \
+    MiXplorer \
+    MusicPlayer
+
 # Call the proprietary setup
-$(call inherit-product, vendor/LYF/mobee01a/mobee01a-vendor.mk)
+$(call inherit-product-if-exists, vendor/LYF/mobee01a/mobee01a-vendor.mk)

@@ -212,4 +212,4 @@ TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib/libizat_core.so|libshims_get_process_name.so
 
 # Inherit from proprietary files
-include vendor/LYF/mobee01a/BoardConfigVendor.mk
+-include vendor/LYF/mobee01a/BoardConfigVendor.mk
