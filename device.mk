@@ -80,6 +80,9 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service
 
+# Dalvik
+$(call inherit-product, device/LYF/mobee01a/display/phone-xxhdpi-2048-hwui-memory.mk)
+
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-impl \
@@ -307,18 +310,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/goodix.kl:system/usr/keylayout/goodix.kl \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
-# Lights
-PRODUCT_PACKAGES += \
-    lights.msm8916
-
 # Libshim
 PRODUCT_PACKAGES += \
     libshim_atomic
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-impl \
-    android.hardware.light@2.0-service
+    android.hardware.light@2.0-service.lyf_8916
 
 # Media
 PRODUCT_COPY_FILES += \
