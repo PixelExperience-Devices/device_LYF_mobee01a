@@ -383,9 +383,8 @@ PRODUCT_PACKAGES += \
     libshim_parcel \
     libshim_boringssl
 
-# Doze
+# Parts
 PRODUCT_PACKAGES += \
-    LYFDoze \
     LYFParts
 
 #Misc
