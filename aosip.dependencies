@@ -19,20 +19,26 @@
   },
   {
     "remote": "github",
-    "repository": "LineageOS/android_hardware_qcom_media",
+    "repository": "LS-5015-G42-Dev-Team/android_hardware_qcom_media",
     "target_path": "hardware/qcom/media-caf/msm8916",
     "revision": "lineage-15.1-8916"
   },
   {
     "remote": "github",
-    "repository": "LineageOS/android_hardware_qcom_display",
+    "repository": "LS-5015-G42-Dev-Team/android_hardware_qcom_display",
     "target_path": "hardware/qcom/display-caf/msm8916",
     "revision": "lineage-15.1-8916"
   },
   {
     "remote": "github",
-    "repository": "LineageOS/android_hardware_qcom_audio",
+    "repository": "LS-5015-G42-Dev-Team/android_hardware_qcom_audio",
     "target_path": "hardware/qcom/audio-caf/msm8916",
     "revision": "lineage-15.1-8916"
+  },
+  {
+    "remote": "github",
+    "repository": "LS-5015-G42-Dev-Team/android_packages_resources_devicesettings",
+    "target_path": "packages/resources/devicesettings",
+    "revision": "lineage-15.1"
   }
 ]
