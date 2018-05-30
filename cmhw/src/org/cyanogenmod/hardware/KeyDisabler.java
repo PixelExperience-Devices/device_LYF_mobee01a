@@ -28,7 +28,7 @@ import org.cyanogenmod.internal.util.FileUtils;
  */
 public class KeyDisabler {
     private static final String CONTROL_PATH =
-            "/sys/devices/soc.0/78b9000.i2c/i2c-5/5-005d/keypad_enable";
+            "/sys/devices/soc.0/78ba000.i2c/i2c-6/6-0048/power_on";
 
     public static boolean isSupported() {
         return FileUtils.isFileReadable(CONTROL_PATH) &&
