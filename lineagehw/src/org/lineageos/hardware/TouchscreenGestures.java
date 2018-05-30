@@ -38,7 +38,7 @@ import lineageos.hardware.TouchscreenGesture;
 public class TouchscreenGestures {
 
     private static final String GESTURE_PATH =
-            "/sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl";
+            "/sys/devices/soc.0/78ba000.i2c/i2c-6/6-0048/wakeup_gesture";
 
     // Id, name, keycode
     private static final TouchscreenGesture[] TOUCHSCREEN_GESTURES = {
