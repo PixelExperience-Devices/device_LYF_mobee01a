@@ -66,11 +66,9 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
-
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
-TARGET_USES_GRALLOC1 := true
-TARGET_USES_HWC2 := true
+TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 TARGET_USES_NEW_ION_API := true
 USE_OPENGL_RENDERER := true
@@ -84,6 +82,7 @@ TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
 
 # FM
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
@@ -99,15 +98,18 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 # Camera
 BOARD_CAMERA_SENSORS := imx135_cp8675 imx214_cp8675 ov5648_cp8675
 USE_DEVICE_SPECIFIC_CAMERA := true
+BOARD_QTI_CAMERA_32BIT_ONLY := true
+TARGET_TS_MAKEUP := true
+TARGET_USES_QTI_CAMERA_DEVICE := true
 
 # Filesystem
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
-BOARD_PERSISTIMAGE_PARTITION_SIZE := 10485760
+BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 13576175616 # 13576192000 - 16384
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 11039874560 # 13576192000 - 16384
 
 # GPS
 TARGET_NO_RPC := true
@@ -133,17 +135,18 @@ TARGET_KERNEL_CONFIG := test01a_msm_defconfig
 
 # Manifest
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
+DEVICE_MATRIX_FILE   := $(DEVICE_PATH)/compatibility_matrix.xml
 
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
 
 # Power
 TARGET_POWERHAL_SET_INTERACTIVE_EXT := $(DEVICE_PATH)/power/power_ext.c
+TARGET_PROVIDES_POWERHAL := true
 TARGET_POWERHAL_VARIANT := qcom
 
 # Lights
 BOARD_LIGHTS_VARIANT := aw2013
-TARGET_PROVIDES_LIBLIGHT := true
 
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
@@ -201,7 +204,7 @@ TARGET_PROVIDES_WCNSS_QMI := true
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
-    /system/bin/mm-qcamera-daemon|libshim_camera.so \
+    /system/vendor/bin/mm-qcamera-daemon|libshim_camera.so \
     /system/vendor/lib/libmmcamera2_imglib_modules.so|libshim_camera.so \
     /system/vendor/lib/libmmcamera2_stats_modules.so|libshim_camera.so \
     /system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so \
@@ -210,6 +213,9 @@ TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib64/libizat_core.so|libshims_get_process_name.so \
     /system/vendor/lib/libflp.so|libshims_flp.so \
     /system/vendor/lib/libizat_core.so|libshims_get_process_name.so
+
+#Sensors
+USE_SENSOR_MULTI_HAL := true
 
 # Inherit from proprietary files
 -include vendor/LYF/mobee01a/BoardConfigVendor.mk
