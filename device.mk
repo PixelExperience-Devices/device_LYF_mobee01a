@@ -280,9 +280,7 @@ PRODUCT_PACKAGES += \
     libmm-qcamera \
     FootejCamera \
     libshim_camera \
-    libboringssl-compat \
-    Snap \
-    Camera2
+    libboringssl-compat
 
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
