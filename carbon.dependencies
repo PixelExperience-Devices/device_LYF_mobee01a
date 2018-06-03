@@ -1,0 +1,44 @@
+[
+  {
+    "remote": "github",
+    "repository": "LS-5015-G42-Dev-Team/kernel_LYF_LS-5015",
+    "target_path": "kernel/LYF/mobee01a",
+    "revision": "lineage-15.1"
+  },
+  {
+    "remote": "github",
+    "repository": "DotOS/android_external_sony_boringssl-compat",
+    "target_path": "external/sony/boringssl-compat",
+    "revision": "dot-o"
+  },
+  {
+    "remote": "github",
+    "repository": "LS-5015-G42-Dev-Team/vendor_LYF_LS-5015",
+    "target_path": "vendor/LYF/mobee01a",
+    "revision": "master"
+  },
+  {
+    "remote": "github",
+    "repository": "LS-5015-G42-Dev-Team/android_hardware_qcom_media",
+    "target_path": "hardware/qcom/media-caf/msm8916",
+    "revision": "lineage-15.1-8916"
+  },
+  {
+    "remote": "github",
+    "repository": "LS-5015-G42-Dev-Team/android_hardware_qcom_display",
+    "target_path": "hardware/qcom/display-caf/msm8916",
+    "revision": "lineage-15.1-8916"
+  },
+  {
+    "remote": "github",
+    "repository": "LS-5015-G42-Dev-Team/android_hardware_qcom_audio",
+    "target_path": "hardware/qcom/audio-caf/msm8916",
+    "revision": "lineage-15.1-8916"
+  },
+  {
+    "remote": "github",
+    "repository": "LS-5015-G42-Dev-Team/android_packages_resources_devicesettings",
+    "target_path": "packages/resources/devicesettings",
+    "revision": "lineage-15.1"
+  }
+]

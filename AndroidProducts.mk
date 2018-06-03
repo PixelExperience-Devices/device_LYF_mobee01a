@@ -14,7 +14,8 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_mobee01a.mk
+    $(LOCAL_DIR)/full_mobee01a.mk \
+    $(LOCAL_DIR)/carbon_mobee01a.mk
 
 #----------------------------------------------------------------------
 # extra images
