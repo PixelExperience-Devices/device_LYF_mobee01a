@@ -1,0 +1,11 @@
+
+# Personal
+Fixed Recording issue in the Camera Apps (Thanks to @MikeNG)
+Increased Sound Quality (Added Stock MTP's)
+Increased Headset Sound
+Added Display Gestures:
+ * PickUp Sensor
+ * Proximity
+ * Pocket
+ * Haptic Vibrate
+Panorama not tested
