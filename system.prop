@@ -61,8 +61,6 @@ ro.sf.lcd_density=320
 # Camera
 persist.camera.cpp.duplication=false
 persist.camera.hal.debug.mask=0
-camera.hal3.force.1=com.google.android.GoogleCamera
-camera.hal3.force.total=1
 
 # Radio
 DEVICE_PROVISIONED=1
