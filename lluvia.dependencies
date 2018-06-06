@@ -13,10 +13,5 @@
     "repository": "LLuviaDevices/vendor_LYF_LS-5015",
     "target_path": "vendor/LYF/mobee01a",
     "revision": "master"
-  },
-  {
-    "repository": "LLuviaOS/android_packages_resources_devicesettings",
-    "target_path": "packages/resources/devicesettings",
-    "revision": "lineage-15.1"
   }
 ]
