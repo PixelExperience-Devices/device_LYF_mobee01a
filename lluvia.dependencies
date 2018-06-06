@@ -17,6 +17,6 @@
   {
     "repository": "LLuviaOS/android_packages_resources_devicesettings",
     "target_path": "packages/resources/devicesettings",
-    "revision": "8.1"
+    "revision": "lineage-15.1"
   }
 ]
