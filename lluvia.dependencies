@@ -7,7 +7,7 @@
   {
     "repository": "LLuviaOS/android_external_sony_boringssl-compat",
     "target_path": "external/sony/boringssl-compat",
-    "revision": "8.1"
+    "revision": "lineage-15.1"
   },
   {
     "repository": "LLuviaDevices/vendor_LYF_LS-5015",
