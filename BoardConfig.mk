@@ -219,6 +219,3 @@ USE_SENSOR_MULTI_HAL := true
 
 # Inherit from proprietary files
 -include vendor/LYF/mobee01a/BoardConfigVendor.mk
-
-#Official
-LLUVIA_BUILD_TYPE := Official
