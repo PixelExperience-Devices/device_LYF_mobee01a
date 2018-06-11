@@ -278,7 +278,6 @@ TARGET_SCREEN_WIDTH := 720
 PRODUCT_PACKAGES += \
     camera.msm8916 \
     libmm-qcamera \
-    FootejCamera \
     libshim_camera \
     libboringssl-compat \
     Snap \
