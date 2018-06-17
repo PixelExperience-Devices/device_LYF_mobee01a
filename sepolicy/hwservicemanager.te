@@ -1,0 +1,5 @@
+allow hwservicemanager init:dir { search };
+allow hwservicemanager init:process { getattr };
+allow hwservicemanager init:file { open };
+allow hwservicemanager init:binder { call };
+
