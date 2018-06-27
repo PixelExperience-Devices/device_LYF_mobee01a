@@ -131,7 +131,7 @@ BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_KERNEL_SEPARATED_DT := true
 LZMA_RAMDISK_TARGETS := recovery
 TARGET_KERNEL_SOURCE := kernel/LYF/mobee01a
-TARGET_KERNEL_CONFIG := nichrome_defconfig
+TARGET_KERNEL_CONFIG := test01a_msm_defconfig
 
 # Manifest
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
@@ -170,7 +170,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := ABGR_8888
 
 # SELinux
-BOARD_SEPOLICY_DIRS := $(DEVICE_PATH)/sepolicy
+#BOARD_SEPOLICY_DIRS := $(DEVICE_PATH)/sepolicy
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
