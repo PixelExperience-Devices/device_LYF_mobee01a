@@ -107,12 +107,6 @@ PRODUCT_PACKAGES += \
     android.hidl.manager@1.0 \
     android.hidl.manager@1.0-java
 
-#GPS
-PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl \
-    android.hardware.gnss@1.0-impl-qti \
-    android.hardware.gnss@1.0-service-qti
-
 #Broadcast
 PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl
@@ -288,12 +282,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
-    camera.device@1.0-impl \
-    android.hardware.camera.provider@2.4-service \
     camera.device@3.2-impl
-
-# Dalvik
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # GPS
 PRODUCT_PACKAGES += \
