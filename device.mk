@@ -78,17 +78,14 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service
 
-# Dalvik
-$(call inherit-product, device/LYF/mobee01a/display/phone-xxhdpi-2048-hwui-memory.mk)
+# LiveDisplay native
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@1.0-service-sdm
 
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-impl \
     android.hardware.thermal@1.0-service
-
-# LiveDisplay native
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@1.0-service-sdm
 
 # Health HAL
 PRODUCT_PACKAGES += \
@@ -129,17 +126,21 @@ PRODUCT_PACKAGES += \
     FMRadio \
     libfmjni
 
-# GPS
+# SHIM
 PRODUCT_PACKAGES += \
+    libshim_atomic \
+    libshim_parcel \
+    libshim_boringssl \
+    libshim_camera \
     libshims_get_process_name \
     libshims_flp
 
-PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl \
-    android.hardware.gnss@1.0-service
-
 # Init scripts
 PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.target.rc \
+    init.qti.ims.sh \
+    set_baseband.sh \
     init.qcom.rc \
     init.qcom.mem.sh \
     init.qcom.bt.sh \
@@ -232,7 +233,6 @@ PRODUCT_PACKAGES += \
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
-    libwcnss_qmi \
     wcnss_service
 
 PRODUCT_PACKAGES += \
@@ -247,7 +247,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/configs/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
+    $(LOCAL_PATH)/configs/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/prima/WCNSS_cfg.dat \
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 
 # USB HAL
 PRODUCT_PACKAGES += \
@@ -275,7 +277,6 @@ TARGET_SCREEN_WIDTH := 720
 PRODUCT_PACKAGES += \
     camera.msm8916 \
     libmm-qcamera \
-    libshim_camera \
     libboringssl-compat \
     Snap \
     Camera2
@@ -286,7 +287,9 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8916
+    gps.msm8916 \
+    android.hardware.gnss@1.0-impl \
+    android.hardware.gnss@1.0-service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/flp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/flp.conf \
@@ -294,21 +297,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/izat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/izat.conf \
     $(LOCAL_PATH)/gps/sap.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sap.conf
 
-# Init scripts
-PRODUCT_PACKAGES += \
-    fstab.qcom \
-    init.target.rc \
-    init.qti.ims.sh \
-    set_baseband.sh
-
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/goodix.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/goodix.kl \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/gpio-keys.kl
-
-# Libshim
-PRODUCT_PACKAGES += \
-    libshim_atomic
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -360,19 +352,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.usb.id.ums_adb=9015 \
     ro.usb.vid=05c6
 
-# Wi-Fi
-PRODUCT_PACKAGES += \
-    libwcnss_qmi
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/prima/WCNSS_cfg.dat \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
-
-# Widevine DRM symbol, boringssl-compat subset
-PRODUCT_PACKAGES += \
-    libshim_parcel \
-    libshim_boringssl
-
 # Parts
 PRODUCT_PACKAGES += \
     LYFParts
@@ -387,4 +366,4 @@ PRODUCT_PACKAGES += \
     vndk-sp
 
 # Call the proprietary setup
-$(call inherit-product-if-exists, vendor/LYF/mobee01a/mobee01a-vendor.mk)
+$(call inherit-product, vendor/LYF/mobee01a/mobee01a-vendor.mk)
