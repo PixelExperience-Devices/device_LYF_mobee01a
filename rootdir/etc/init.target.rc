@@ -89,11 +89,6 @@ on boot
     chown system system /sys/mip4_ts/wakeup_gesture
     chmod 0660 /sys/mip4_ts/wakeup_gesture
 
-service baseband-sh /system/vendor/bin/sh /system/vendor/etc/set_baseband.sh
-    class late_start
-    user root
-    oneshot
-
 on init
 
 service imsqmidaemon /system/vendor/bin/imsqmidaemon
