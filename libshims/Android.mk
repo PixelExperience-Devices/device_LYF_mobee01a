@@ -27,8 +27,17 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := boringssl/p_dec.c boringssl/p_open.c boringssl/cipher.c \
-    boringssl/e_des.c boringssl/cleanup.c boringssl/ctrl.c
+LOCAL_SRC_FILES := \
+	boringssl/bio_b64.c \
+	boringssl/cipher.c \
+	boringssl/p_dec.c \
+	boringssl/p_enc.c \
+	boringssl/p_open.c \
+	boringssl/p_seal.c \
+	boringsll/rsa_pss.c \
+	boringssl/e_des.c \
+	boringssl/cleanup.c \
+	boringssl/ctrl.c \
 
 LOCAL_CFLAGS += -std=c99
 LOCAL_C_INCLUDES := boringssl

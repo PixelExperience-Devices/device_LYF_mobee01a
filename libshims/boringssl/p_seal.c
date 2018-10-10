@@ -1,4 +1,4 @@
-/* crypto/evp/p_open.c */
+/* crypto/evp/p_seal.c */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
  *
@@ -59,79 +59,69 @@
 #include <stdio.h>
 //#include "cryptlib.h"
 #include "evp.h"
+#include <openssl/rand.h>
 #ifndef OPENSSL_NO_RSA
-
+#include <openssl/rsa.h>
+#endif
 #include <openssl/cipher.h>
-#include <openssl/err.h>
 #include <openssl/evp.h>
-#include <openssl/mem.h>
 #include <openssl/objects.h>
 #include <openssl/x509.h>
-#include <openssl/rsa.h>
 
-int EVP_OpenUpdate(EVP_CIPHER_CTX *ctx, uint8_t *out, int *out_len,
-                      const uint8_t *in, int in_len)
-    {
-	return EVP_DecryptUpdate(ctx, out, out_len, in, in_len);
-    }
-
-int EVP_OpenInit(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *type,
-	const unsigned char *ek, int ekl, const unsigned char *iv,
-	EVP_PKEY *priv)
+int EVP_CIPHER_CTX_rand_key(EVP_CIPHER_CTX *ctx, unsigned char *key)
 	{
-	unsigned char *key=NULL;
-	int i,size=0,ret=0;
+	if (ctx->cipher->flags & EVP_CIPH_RAND_KEY)
+		return EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_RAND_KEY, 0, key);
+	if (RAND_bytes(key, ctx->key_len) <= 0)
+		return 0;
+	return 1;
+	}
 
-	if(type) {	
+int EVP_SealInit(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *type, unsigned char **ek,
+	     int *ekl, unsigned char *iv, EVP_PKEY **pubk, int npubk)
+	{
+	unsigned char key[EVP_MAX_KEY_LENGTH];
+	int i;
+	
+	if(type) {
 		EVP_CIPHER_CTX_init(ctx);
-		if(!EVP_DecryptInit_ex(ctx,type,NULL, NULL,NULL)) return 0;
+		if(!EVP_EncryptInit_ex(ctx,type,NULL,NULL,NULL)) return 0;
+	}
+	if ((npubk <= 0) || !pubk)
+		return 1;
+	if (EVP_CIPHER_CTX_rand_key(ctx, key) <= 0)
+		return 0;
+	if (EVP_CIPHER_CTX_iv_length(ctx))
+		RAND_pseudo_bytes(iv,EVP_CIPHER_CTX_iv_length(ctx));
+
+	if(!EVP_EncryptInit_ex(ctx,NULL,NULL,key,iv)) return 0;
+
+	for (i=0; i<npubk; i++)
+		{
+		ekl[i]=EVP_PKEY_encrypt_old(ek[i],key,EVP_CIPHER_CTX_key_length(ctx),
+			pubk[i]);
+		if (ekl[i] <= 0) return(-1);
+		}
+	return(npubk);
 	}
 
-	if(!priv) return 1;
-
-	if (priv->type != EVP_PKEY_RSA)
-		{
-		EVPerr(EVP_F_EVP_OPENINIT,EVP_R_PUBLIC_KEY_NOT_RSA);
-		goto err;
-                }
-
-	size=RSA_size(priv->pkey.rsa);
-	key=(unsigned char *)OPENSSL_malloc(size+2);
-	if (key == NULL)
-		{
-		/* ERROR */
-		EVPerr(EVP_F_EVP_OPENINIT,ERR_R_MALLOC_FAILURE);
-		goto err;
-		}
-
-	i=EVP_PKEY_decrypt_old(key,ek,ekl,priv);
-	if ((i <= 0) || !EVP_CIPHER_CTX_set_key_length(ctx, i))
-		{
-		/* ERROR */
-		goto err;
-		}
-	if(!EVP_DecryptInit_ex(ctx,NULL,NULL,key,iv)) goto err;
-
-	ret=1;
-err:
-	if (key != NULL) OPENSSL_cleanse(key,size);
-	OPENSSL_free(key);
-	return(ret);
+/* MACRO
+void EVP_SealUpdate(ctx,out,outl,in,inl)
+EVP_CIPHER_CTX *ctx;
+unsigned char *out;
+int *outl;
+unsigned char *in;
+int inl;
+	{
+	EVP_EncryptUpdate(ctx,out,outl,in,inl);
 	}
+*/
 
-int EVP_OpenFinal(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl)
+int EVP_SealFinal(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl)
 	{
 	int i;
-
-	i=EVP_DecryptFinal_ex(ctx,out,outl);
-	if (i)
-		i = EVP_DecryptInit_ex(ctx,NULL,NULL,NULL,NULL);
-	return(i);
+	i = EVP_EncryptFinal_ex(ctx,out,outl);
+	if (i) 
+		i = EVP_EncryptInit_ex(ctx,NULL,NULL,NULL,NULL);
+	return i;
 	}
-#else /* !OPENSSL_NO_RSA */
-
-# ifdef PEDANTIC
-static void *dummy=&dummy;
-# endif
-
-#endif
