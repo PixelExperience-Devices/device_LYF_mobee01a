@@ -34,7 +34,7 @@ LOCAL_SRC_FILES := \
 	boringssl/p_enc.c \
 	boringssl/p_open.c \
 	boringssl/p_seal.c \
-	boringsll/rsa_pss.c \
+	boringssl/rsa_pss.c \
 	boringssl/e_des.c \
 	boringssl/cleanup.c \
 	boringssl/ctrl.c \
